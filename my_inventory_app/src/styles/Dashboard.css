@@ -1,0 +1,80 @@
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--base-300);
+    height: 100vh;
+}
+
+.dashboard-card {
+    background-color: var(--base-100);
+    width: 90%;
+    padding: 60px;
+    border-radius: 40px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--base-300);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.dashboard-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.dashboard-title {
+    font-size: clamp(40px, 8vw, 70px);
+    color: var(--primary);
+    padding: 10px;
+    font-size: 60px;
+}
+
+.dashboard-submit {
+    background-color: var(--accent);
+    color: var(--base-100);
+}
+
+.dashboard-message {
+    min-height: 120px; 
+    resize: vertical; 
+    padding-top: 12px;
+    line-height: 1.5;
+    font-family: inherit;
+}
+
+@media (max-width: 480px) {
+  .dashboard-container {
+    padding: 20px 10px; 
+    align-items: flex-start; 
+  }
+
+  .dashboard-card {
+    padding: 25px 15px;
+    width: 100%;
+    box-shadow: none;
+    border: none;
+  }
+
+  .dashboard-title {
+    font-size: 1.25rem; 
+    text-align: center;
+  }
+
+  .auth-input {
+    font-size: 16px; 
+    padding: 14px; 
+  }
+
+  .message-input {
+    min-height: 150px; 
+  }
+
+  .dashboard-submit {
+    padding: 16px; 
+  }
+}
