@@ -8,6 +8,8 @@
     position: fixed;
     left: 0;
     top: 0;
+    transition: transform 0.3s ease-in-out; 
+    z-index: 1000;
 }
 
 .sidebar-title {
@@ -61,4 +63,55 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.hamburger-button {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        width: 280px;
+        box-shadow: 10px 0 15px rgba(0,0,0,0.1);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .hamburger-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 1100; 
+        background-color: var(--accent);
+        color: white;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        font-size: 20px;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
+
+    .sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+    }
+    
+    .sidebar-title {
+        font-size: 28px;
+        padding: 20px;
+        margin-top: 40px;
+    }
 }

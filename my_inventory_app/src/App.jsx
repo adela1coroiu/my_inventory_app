@@ -34,7 +34,7 @@ function App() {
             <span>OR</span>
           </div>
 
-          <button onClick={() => navigate('/dashboard')} className='guest-link'>
+          <button onClick={() => navigate('/contact-page')} className='guest-link'>
             Explore as visitor
           </button>
         </div>
