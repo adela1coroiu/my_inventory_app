@@ -1,11 +1,12 @@
 import '../styles/AddStock.css';
 import Sidebar from './Sidebar';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { supabase } from '../supabase/supabaseClient';
 import { useState } from 'react';
+import { addStockLocal } from '../store/stockSlice'
 
 function AddStock() {
-
+    const dispatch = useDispatch();
     const user = useSelector((state) => state.auth.user);
     const [loading, setLoading] = useState(false);
 
@@ -25,7 +26,7 @@ function AddStock() {
         event.preventDefault();
         setLoading(true);
 
-        const { error } = await supabase
+        const { data, error } = await supabase
             .from('stocks')
             .insert([{
                 name: formData.name,
@@ -34,13 +35,16 @@ function AddStock() {
                 price: parseFloat(formData.price),
                 date_added: formData.date,
                 user_id: user.id
-            }
-        ]);
+            }])
+            .select();
 
         if(error) {
             alert(error.message);
         }
         else {
+            if(data && data.length > 0) {
+                dispatch(addStockLocal(data[0]));
+            }
             alert("Stock added successfully!");
             setFormData({
                 name: '',
@@ -51,6 +55,17 @@ function AddStock() {
             })
         }
         setLoading(false);
+    }
+
+    if (!user) {
+        return (
+            <div className='dashboard-layout'>
+                <Sidebar />
+                <div className='form-container'>
+                    <p>Verifying session...</p>
+                </div>
+            </div>
+        );
     }
 
     return (

@@ -4,11 +4,14 @@ import { Provider } from 'react-redux'
 import './index.css'
 import AppRouter from './router/AppRouter.jsx'
 import { store } from './store/index.js'
+import AuthInitializer from './components/AuthInitializer.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
-      <AppRouter />
+      <AuthInitializer>
+        <AppRouter />
+      </AuthInitializer>
     </Provider>
   </StrictMode>,
 )

@@ -9,7 +9,7 @@
 
 .dashboard-card {
     background-color: var(--base-100);
-    width: 90%;
+    width: 70%;
     padding: 60px;
     border-radius: 40px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
@@ -31,7 +31,7 @@
     font-size: clamp(40px, 8vw, 70px);
     color: var(--primary);
     padding: 10px;
-    font-size: 60px;
+    font-size: 50px;
 }
 
 .dashboard-submit {
