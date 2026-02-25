@@ -69,6 +69,23 @@
     display: none;
 }
 
+.theme-toggle {
+    background-color: transparent;
+    cursor: pointer;
+    width: 100%;
+    border: 1px solid var(--base-300);
+}
+
+.nav-item.dark-active {
+    background-color: var(--primary); 
+    color: var(--primary-content);
+    border-color: var(--primary);
+}
+
+.theme-toggle:hover {
+    background-color: var(--base-200);
+}
+
 @media (max-width: 768px) {
     .sidebar {
         transform: translateX(-100%);
