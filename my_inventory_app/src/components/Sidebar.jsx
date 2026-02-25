@@ -7,9 +7,13 @@ import add_stock from '../assets/add_stock.png';
 import create_order from '../assets/create_order.png';
 import user from '../assets/user.png';
 import logout from '../assets/logout.png';
+import { useTheme } from '../context/ThemeContext';
+import moon from '../assets/moon.png';
+import sun from '../assets/sun.png';
 
 function Sidebar() {
     const [isOpen, setIsOpen] = useState(false);
+    const { isDarkMode, toggleTheme } = useTheme();
 
     const toggleSidebar = () => setIsOpen(!isOpen);
     const closeSidebar = () => setIsOpen(false);
@@ -28,6 +32,11 @@ function Sidebar() {
                 <p className='sidebar-title'>InventSync</p>
 
                 <nav className='sidebar-nav'>
+                    <button className={`nav-item theme-toggle ${isDarkMode ? 'dark-active' : ''}`} onClick={toggleTheme}>
+                        <img src={isDarkMode ? sun : moon} className='nav-icon' alt="theme icon" />
+                        {isDarkMode ? 'Light mode' : 'Dark mode'}
+                    </button>
+                    
                     <NavLink to='/home' onClick={closeSidebar} className={({isActive}) => isActive ? 'nav-item active' : 'nav-item'}>
                         <img src={home} className='nav-icon' alt='Home'/>
                         Home

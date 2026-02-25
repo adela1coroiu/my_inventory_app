@@ -18,6 +18,22 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.1s ease;
+}
+
+body.dark-mode {
+  --base-100: oklch(20% 0.01 285);   
+  --base-200: oklch(25% 0.01 285);    
+  --base-300: oklch(30% 0.01 285);   
+  --base-content: oklch(95% 0.01 285); 
+  
+  --primary: oklch(60% 0.2 277); 
+}
+
+body {
+  background-color: var(--base-100);
+  color: var(--base-content);
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition */
 }
 
 body, html, #root {

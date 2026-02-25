@@ -5,12 +5,15 @@ import './index.css'
 import AppRouter from './router/AppRouter.jsx'
 import { store } from './store/index.js'
 import AuthInitializer from './components/AuthInitializer.jsx'
+import { ThemeProvider } from './context/ThemeContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
       <AuthInitializer>
-        <AppRouter />
+        <ThemeProvider>
+          <AppRouter />
+        </ThemeProvider>
       </AuthInitializer>
     </Provider>
   </StrictMode>,

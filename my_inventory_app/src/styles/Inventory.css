@@ -75,6 +75,15 @@
     background-color: #f9fafb;
 }
 
+.inventory-table tbody tr:hover {
+    background-color: var(--base-200); 
+    transition: background-color 0.2s ease;
+}
+
+.inventory-table tbody tr:hover td {
+    color: var(--base-content);
+}
+
 .pagination-bar {
     margin-top: 25px;
     display: flex;
