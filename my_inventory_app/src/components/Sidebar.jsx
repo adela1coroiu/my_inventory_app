@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import '../styles/Sidebar.css';
 import { NavLink, useNavigate } from 'react-router-dom';
-import home from '../assets/house.png';
 import inventory from '../assets/inventory.png';
 import add_stock from '../assets/add_stock.png';
 import create_order from '../assets/create_order.png';
@@ -49,11 +48,6 @@ function Sidebar() {
                         <img src={isDarkMode ? sun : moon} className='nav-icon' alt="theme icon" />
                         {isDarkMode ? 'Light mode' : 'Dark mode'}
                     </button>
-                    
-                    <NavLink to='/home' onClick={closeSidebar} className={({isActive}) => isActive ? 'nav-item active' : 'nav-item'}>
-                        <img src={home} className='nav-icon' alt='Home'/>
-                        Home
-                    </NavLink>
 
                     <NavLink to='/inventory' onClick={closeSidebar} className={({isActive}) => isActive ? 'nav-item active' : 'nav-item'}>
                         <img src={inventory} className='nav-icon' alt='Inventory'/>
