@@ -90,7 +90,12 @@
 
 .auth-link {
     color: var(--secondary);
-    font-weight: 500;
+    font-weight: 400;
+}
+
+.auth-link:hover {
+    cursor: pointer;
+    font-weight: 600;
 }
 
 .back-link {
@@ -99,6 +104,7 @@
     opacity: 0.6;
     cursor: pointer;
     font-size: 15px;
+    color: var(--base-content);
 }
 
 .back-link:hover {
