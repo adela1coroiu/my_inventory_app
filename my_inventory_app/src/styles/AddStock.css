@@ -74,8 +74,13 @@
 .form-group input:focus, 
 .form-group textarea:focus {
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1); /* Subtle glow */
+    box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1); 
     background-color: #fff;
+}
+
+.dark-mode .form-group input:focus,
+.dark-mode .form-group textarea:focus {
+    color: var(--base-300);
 }
 
 textarea {

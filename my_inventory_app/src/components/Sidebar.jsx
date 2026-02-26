@@ -1,22 +1,35 @@
 import { useState } from 'react';
 import '../styles/Sidebar.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import home from '../assets/house.png';
 import inventory from '../assets/inventory.png';
 import add_stock from '../assets/add_stock.png';
 import create_order from '../assets/create_order.png';
-import user from '../assets/user.png';
 import logout from '../assets/logout.png';
 import { useTheme } from '../context/ThemeContext';
 import moon from '../assets/moon.png';
 import sun from '../assets/sun.png';
+import { supabase } from '../supabase/supabaseClient';
 
 function Sidebar() {
     const [isOpen, setIsOpen] = useState(false);
     const { isDarkMode, toggleTheme } = useTheme();
+    const navigate = useNavigate();
 
     const toggleSidebar = () => setIsOpen(!isOpen);
     const closeSidebar = () => setIsOpen(false);
+
+    const handleLogout = async () => {
+        const { error } = await supabase.auth.signOut();
+
+        if(error) {
+            alert("Logout failed: ", error.message);
+        }
+        else {
+            localStorage.clear();
+            navigate('/');
+        }
+    }
 
     return (
         <>
@@ -59,15 +72,10 @@ function Sidebar() {
                 </nav>
 
                 <div className="sidebar-footer">
-                    <NavLink to='/profile' onClick={closeSidebar} className={({isActive}) => isActive ? 'nav-item active' : 'nav-item'}>
-                        <img src={user} className='nav-icon' alt='Profile'/>
-                        Profile settings
-                    </NavLink>
-                    
-                    <NavLink to='/' className='nav-item'>
+                    <button onClick={handleLogout} className='nav-item logout-button'>
                         <img src={logout} className='nav-icon' alt='Logout'/>
                         Log out
-                    </NavLink>
+                    </button>
                 </div>
             </aside>
         </>

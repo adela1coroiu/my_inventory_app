@@ -1,4 +1,4 @@
-import '../styles/Dashboard.css'
+import '../styles/ContactPage.css'
 import '../styles/Auth.css'
 import { useNavigate } from 'react-router';
 import { useState } from 'react';

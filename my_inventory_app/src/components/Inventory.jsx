@@ -87,7 +87,7 @@ function Inventory() {
 
     const handleDelete = async (id, name) => {
         if(window.confirm(`Are you sure you want to delete ${name}?`)) {
-            const { error } = supabase
+            const { error } = await supabase
                 .from('stocks')
                 .delete()
                 .eq('id', id);
@@ -149,54 +149,72 @@ function Inventory() {
                 </div>
 
                 <div className='inventory-card'>
-                    <table className='inventory-table'>
-                        <thead>
-                            <tr>
-                                <th>Product name</th>
-                                <th>Description</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
-                                <th>Date added</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {status === 'loading' ? (
+                    {/* wrapper for a responsive data view (table on desktops and cards on mobile screens) */}
+                    <div className='inventory-data-wrapper'>
+                        {/* desktop table view */}
+                        <table className='inventory-table desktop-only'>
+                            <thead>
                                 <tr>
-                                    <td colSpan="5">Loading inventory...</td>
+                                    <th>Product name</th>
+                                    <th>Description</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th>Date added</th>
+                                    <th>Actions</th>
                                 </tr>
-                            ) : (
-                                stocks.length > 0 ? (
-                                    stocks.map((item) => (
+                            </thead>
+                            <tbody>
+                                {status === 'loading' ? (
+                                    <tr><td colSpan="6">Loading inventory...</td></tr>
+                                ) : displayedItems.length > 0 ? (
+                                    displayedItems.map((item) => (
                                         <tr key={item.id}>
                                             <td><strong>{item.name}</strong></td>
                                             <td>{item.description || '-'}</td>
                                             <td>{item.quantity}</td>
-                                            <td>{parseFloat(item.price).toFixed(2)}</td>
+                                            <td>${parseFloat(item.price).toFixed(2)}</td>
                                             <td>{item.date_added}</td>
                                             <td className='actions-cell'>
-                                                <button onClick={() => openEditModal(item)}>
-                                                    <img src={editIcon}></img>
-                                                </button>
-                                                <button onClick={() => handleDelete(item.id, item.name)}> 
-                                                    <img src={deleteIcon}></img>
-                                                </button>
+                                                <button onClick={() => openEditModal(item)}><img src={editIcon} alt="edit"/></button>
+                                                <button onClick={() => handleDelete(item.id, item.name)}><img src={deleteIcon} alt="delete"/></button>
                                             </td>
                                         </tr>
                                     ))
                                 ) : (
-                                    <tr>
-                                        <td colSpan="5">No items found!</td>
-                                    </tr>
-                                )
-                            )}
-                        </tbody>
-                    </table>
+                                    <tr><td colSpan="6">No items found!</td></tr>
+                                )}
+                            </tbody>
+                        </table>
 
+                        {/* mobile screen cards view */}
+                        <div className='mobile-cards-container mobile-only'>
+                            {status === 'loading' ? (
+                                <p>Loading inventory...</p>
+                            ) : displayedItems.length > 0 ? (
+                                displayedItems.map((item) => (
+                                    <div key={item.id} className='inventory-mobile-card'>
+                                        <div className='actions-cell'>
+                                            <button onClick={() => openEditModal(item)}><img src={editIcon} alt="edit"/></button>
+                                            <button onClick={() => handleDelete(item.id, item.name)}><img src={deleteIcon} alt="delete"/></button>
+                                        </div>
+                                        <strong className='mobile-card-title'>{item.name}</strong>
+                                        <span className='card-price'>Price: ${parseFloat(item.price).toFixed(2)}</span>
+                                        <p>Description: {item.description || 'No description provided.'}</p>
+                                        <span>Available quantity: <strong>{item.quantity}</strong></span>
+                                        <span>Date added: {item.date_added}</span>
+                                    </div>
+                                ))
+                            ) : (
+                                <p>No items found!</p>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* the pagination bar is shared by both kinds of views */}
                     <div className='pagination-bar'>
                         <button disabled={page === 1} onClick={() => setPage(page - 1)}>Previous</button>
-                        <span>Page {page}</span>
-                        <button disabled={page * itemsPerPage >= totalPages} onClick={() => setPage(page + 1)}>Next</button>
+                        <span>Page {page} of {totalPages || 1}</span>
+                        <button disabled={page >= totalPages} onClick={() => setPage(page + 1)}>Next</button>
                     </div>
                 </div>
             </div>

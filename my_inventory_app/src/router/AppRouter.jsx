@@ -6,7 +6,6 @@ import Home from '../components/Home';
 import Inventory from '../components/Inventory';
 import AddStock from '../components/AddStock';
 import CreateOrder from '../components/CreateOrder';
-import Profile from '../components/Profile';
 import ContactPage from '../components/ContactPage';
 
 const AppRouter = () => {
@@ -21,7 +20,6 @@ const AppRouter = () => {
                 <Route path='/inventory' element={<Inventory />} />
                 <Route path='/add-stock' element={<AddStock />} />
                 <Route path='/orders' element={<CreateOrder />} />
-                <Route path='/profile' element={<Profile />} />
             </Routes>
         </BrowserRouter>
     )

@@ -74,6 +74,8 @@
     cursor: pointer;
     width: 100%;
     border: 1px solid var(--base-300);
+    font-size: 16px;
+    font-weight: 500;
 }
 
 .nav-item.dark-active {
@@ -84,6 +86,16 @@
 
 .theme-toggle:hover {
     background-color: var(--base-200);
+}
+
+.logout-button {
+    background-color: var(--base-200);
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.logout-button:hover {
+    border-color: var(--primary);
 }
 
 @media (max-width: 768px) {
