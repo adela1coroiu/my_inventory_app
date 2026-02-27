@@ -35,7 +35,7 @@ function Signup() {
             if(data.user) {
                 dispatch(setAuth(data.user));
                 alert("Account created successfully!");
-                navigate('/home');
+                navigate('/inventory');
             }
         }
     }
