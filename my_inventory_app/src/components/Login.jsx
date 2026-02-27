@@ -27,7 +27,7 @@ function Login() {
         }
         else {
             dispatch(setAuth(data.user));
-            navigate('/home');
+            navigate('/inventory');
         }
     }
 

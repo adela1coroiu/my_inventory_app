@@ -11,7 +11,7 @@ function AuthInitializer({children}) {
             const { data: { session }} = await supabase.auth.getSession(); //upon refreshing the page, we check to see if supabase
             //has a valid key saved in the browser's hidden storage
             if(session) {
-                dispatch(setAuth(session.user)); //if there is a valid key, it dispatches the user to redux
+                dispatch(setAuth(session.user)); //if there is a valid key, it dispatches the user to redux auth state
             }
         };
 

@@ -44,7 +44,8 @@ function ContactPage() {
         <div className='dashboard-container'>
             <div className='dashboard-card'>
                 <div className='dashboard-header'>
-                    <h2 className='dashboard-title'>Interested in our offer? Send us a message!</h2>
+                    <h2 className='dashboard-title'>Interested in our offer?</h2>
+                    <h2 className='dashboard-title'>Send us a message!</h2>
                 </div>
                 <form className='auth-form' onSubmit={handleSubmit}>
                     <div className="form-group">
